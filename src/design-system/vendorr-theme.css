@@ -1,0 +1,292 @@
+/* Vendorr Design System CSS Variables */
+:root {
+  /* Colors - Primary Blues */
+  --vendorr-blue-50: #E6F2FF;
+  --vendorr-blue-100: #CCE5FF;
+  --vendorr-blue-200: #99CCFF;
+  --vendorr-blue-300: #66B3FF;
+  --vendorr-blue-400: #3399FF;
+  --vendorr-blue-500: #005A9C;
+  --vendorr-blue-600: #004080;
+  --vendorr-blue-700: #003366;
+  --vendorr-blue-800: #00264D;
+  --vendorr-blue-900: #001A33;
+
+  /* Colors - Gold Accents */
+  --vendorr-gold-50: #FFFEF0;
+  --vendorr-gold-100: #FFFDE1;
+  --vendorr-gold-200: #FFFAC2;
+  --vendorr-gold-300: #FFF7A3;
+  --vendorr-gold-400: #FFF485;
+  --vendorr-gold-500: #FFD700;
+  --vendorr-gold-600: #F6C23E;
+  --vendorr-gold-700: #E6B800;
+  --vendorr-gold-800: #CC9F00;
+  --vendorr-gold-900: #B38600;
+
+  /* Colors - Neutrals */
+  --vendorr-neutral-0: #FFFFFF;
+  --vendorr-neutral-50: #F9FAFB;
+  --vendorr-neutral-100: #F5F5F5;
+  --vendorr-neutral-200: #E5E5E5;
+  --vendorr-neutral-300: #D1D5DB;
+  --vendorr-neutral-400: #9CA3AF;
+  --vendorr-neutral-500: #6B7280;
+  --vendorr-neutral-600: #4B5563;
+  --vendorr-neutral-700: #374151;
+  --vendorr-neutral-800: #1F2937;
+  --vendorr-neutral-900: #111827;
+
+  /* Typography */
+  --vendorr-font-primary: 'Poppins', sans-serif;
+  --vendorr-font-secondary: 'Montserrat', sans-serif;
+
+  /* Spacing */
+  --vendorr-space-1: 0.25rem;
+  --vendorr-space-2: 0.5rem;
+  --vendorr-space-3: 0.75rem;
+  --vendorr-space-4: 1rem;
+  --vendorr-space-5: 1.25rem;
+  --vendorr-space-6: 1.5rem;
+  --vendorr-space-8: 2rem;
+  --vendorr-space-10: 2.5rem;
+  --vendorr-space-12: 3rem;
+  --vendorr-space-16: 4rem;
+  --vendorr-space-20: 5rem;
+  --vendorr-space-24: 6rem;
+
+  /* Border Radius */
+  --vendorr-radius-sm: 0.125rem;
+  --vendorr-radius-base: 0.25rem;
+  --vendorr-radius-md: 0.375rem;
+  --vendorr-radius-lg: 0.5rem;
+  --vendorr-radius-xl: 0.75rem;
+  --vendorr-radius-2xl: 1rem;
+  --vendorr-radius-full: 9999px;
+
+  /* Shadows */
+  --vendorr-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --vendorr-shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --vendorr-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --vendorr-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --vendorr-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --vendorr-shadow-brand: 0 4px 14px 0 rgba(0, 90, 156, 0.1);
+  --vendorr-shadow-gold: 0 4px 14px 0 rgba(255, 215, 0, 0.2);
+
+  /* Transitions */
+  --vendorr-transition-fast: 150ms ease-in-out;
+  --vendorr-transition-base: 200ms ease-in-out;
+  --vendorr-transition-slow: 300ms ease-in-out;
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--vendorr-font-primary);
+  line-height: 1.6;
+  color: var(--vendorr-neutral-800);
+  background-color: var(--vendorr-neutral-0);
+}
+
+/* Line Clamp Utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Utility Classes for Vendorr Brand */
+.vendorr-btn-primary {
+  background-color: var(--vendorr-blue-500);
+  color: var(--vendorr-neutral-0);
+  padding: var(--vendorr-space-2) var(--vendorr-space-4);
+  border-radius: var(--vendorr-radius-lg);
+  font-weight: 500;
+  transition: var(--vendorr-transition-base);
+  box-shadow: var(--vendorr-shadow-brand);
+}
+
+.vendorr-btn-primary:hover {
+  background-color: var(--vendorr-blue-600);
+}
+
+.vendorr-btn-gold {
+  background-color: var(--vendorr-gold-500);
+  color: var(--vendorr-blue-500);
+  padding: var(--vendorr-space-2) var(--vendorr-space-4);
+  border-radius: var(--vendorr-radius-lg);
+  font-weight: 600;
+  transition: var(--vendorr-transition-base);
+  box-shadow: var(--vendorr-shadow-gold);
+}
+
+.vendorr-btn-gold:hover {
+  background-color: var(--vendorr-gold-600);
+}
+
+.vendorr-card {
+  background-color: var(--vendorr-neutral-0);
+  border-radius: var(--vendorr-radius-lg);
+  box-shadow: var(--vendorr-shadow-brand);
+  padding: var(--vendorr-space-6);
+  border: 1px solid var(--vendorr-neutral-200);
+}
+
+.vendorr-input {
+  width: 100%;
+  padding: var(--vendorr-space-2) var(--vendorr-space-3);
+  border: 1px solid var(--vendorr-neutral-300);
+  border-radius: var(--vendorr-radius-lg);
+  transition: var(--vendorr-transition-base);
+}
+
+.vendorr-input:focus {
+  outline: none;
+  border-color: var(--vendorr-blue-500);
+  box-shadow: 0 0 0 2px rgba(0, 90, 156, 0.1);
+}
+
+/* Animation Classes */
+@keyframes vendorr-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.vendorr-pulse {
+  animation: vendorr-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes vendorr-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vendorr-fade-in {
+  animation: vendorr-fade-in 0.5s ease-out;
+}
+
+@keyframes vendorr-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vendorr-slide-up {
+  animation: vendorr-slide-up 0.3s ease-out;
+}
+
+/* Additional Animations for Components */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Focus States */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus-ring:focus {
+  outline: 2px solid var(--vendorr-blue-500);
+  outline-offset: 2px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vendorr-neutral-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vendorr-neutral-300);
+  border-radius: var(--vendorr-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vendorr-neutral-400);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--vendorr-blue-500);
+  color: var(--vendorr-neutral-0);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

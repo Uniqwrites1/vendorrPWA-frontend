@@ -1,0 +1,39 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './design-system/vendorr-theme.css';
+
+/* Custom CSS for Vendorr branding */
+body {
+  font-family: 'Poppins', 'Montserrat', system-ui, -apple-system, sans-serif;
+  background-color: #FFFFFF;
+  color: #1a1a1a;
+}
+
+/* Custom button styles for consistent branding */
+.btn-primary {
+  @apply bg-vendorr-blue hover:bg-vendorr-blue-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 shadow-vendorr;
+}
+
+.btn-secondary {
+  @apply border-2 border-vendorr-gold text-vendorr-blue hover:bg-vendorr-gold hover:text-vendorr-blue font-medium py-2 px-4 rounded-lg transition-all duration-200;
+}
+
+.btn-gold {
+  @apply bg-vendorr-gold hover:bg-vendorr-gold-dark text-vendorr-blue font-medium py-2 px-4 rounded-lg transition-colors duration-200 shadow-vendorr-gold;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-lg shadow-vendorr p-6 border border-gray-100;
+}
+
+/* Input styles */
+.input-primary {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-vendorr-blue focus:border-transparent;
+}
+
+/* Loading animation */
+.loading-pulse {
+  animation: pulseGold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

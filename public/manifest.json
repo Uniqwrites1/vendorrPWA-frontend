@@ -1,0 +1,125 @@
+{
+  "name": "Vendorr Restaurant - Order & Pickup",
+  "short_name": "Vendorr",
+  "description": "Eliminate waiting time with pre-ordering and pickup coordination. Order ahead, skip the line!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#005A9C",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["food", "restaurants", "ordering", "lifestyle"],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "icons": [
+    {
+      "src": "/assets/icon-72x72.svg",
+      "sizes": "72x72",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/assets/icon-96x96.svg",
+      "sizes": "96x96",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/assets/icon-128x128.svg",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/assets/icon-144x144.svg",
+      "sizes": "144x144",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/assets/icon-152x152.svg",
+      "sizes": "152x152",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/assets/icon-192x192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/assets/icon-384x384.svg",
+      "sizes": "384x384",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/assets/icon-512x512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Order Now",
+      "short_name": "Order",
+      "description": "Start ordering from Vendorr menu",
+      "url": "/menu",
+      "icons": [{ "src": "/assets/shortcut-order.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "My Orders",
+      "short_name": "Orders",
+      "description": "View and track your orders",
+      "url": "/orders",
+      "icons": [{ "src": "/assets/shortcut-track.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Cart",
+      "short_name": "Cart",
+      "description": "View your current cart",
+      "url": "/cart",
+      "icons": [{ "src": "/assets/shortcut-order.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/screenshot-mobile-1.png",
+      "sizes": "320x640",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Vendorr menu on mobile"
+    },
+    {
+      "src": "/assets/screenshot-desktop-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Vendorr dashboard on desktop"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "text/plain": [".txt"]
+      }
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+vendorr",
+      "url": "/order?id=%s"
+    }
+  ],
+  "capture_links": "new-client",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred"
+}

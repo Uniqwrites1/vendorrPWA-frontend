@@ -324,19 +324,15 @@ const CheckoutPage = () => {
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Bank Name:</span>
-                          <span className="font-medium">First National Bank (FNB)</span>
+                          <span className="font-medium">Kuda Bank</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Account Name:</span>
-                          <span className="font-medium">Vendorr Restaurant</span>
+                          <span className="font-medium">Uniqwrites Edtech Services-Vendorr</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Account Number:</span>
-                          <span className="font-mono font-bold text-lg">62 1234 5678 90</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Branch Code:</span>
-                          <span className="font-medium">250655</span>
+                          <span className="font-mono font-bold text-lg">3002871052</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Reference:</span>

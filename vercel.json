@@ -51,10 +51,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "VITE_API_URL": "@vite_api_url",
-    "VITE_GOOGLE_CLIENT_ID": "@vite_google_client_id",
-    "VITE_FACEBOOK_APP_ID": "@vite_facebook_app_id"
-  }
+  ]
 }

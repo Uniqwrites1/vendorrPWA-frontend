@@ -123,6 +123,13 @@ export default function AdminDashboard() {
       color: 'bg-green-500'
     },
     {
+      title: 'Settings',
+      description: 'Configure WhatsApp and other app settings',
+      icon: Icons.Settings,
+      link: '/admin/settings',
+      color: 'bg-gray-500'
+    },
+    {
       title: 'Customer Management',
       description: 'View customer information and history',
       icon: Icons.User,

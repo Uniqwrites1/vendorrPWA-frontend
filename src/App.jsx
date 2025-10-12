@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import { NotificationProvider } from './context/NotificationContext'
 import ToastContainer from './components/ToastContainer'
+import FloatingWhatsApp from './components/FloatingWhatsApp'
 import HomePage from './pages/HomePage'
 import MenuPage from './pages/MenuPage'
 import LoginPage from './pages/LoginPage'
@@ -18,6 +19,7 @@ import AdminDashboard from './pages/AdminDashboard'
 import AdminOrdersPage from './pages/AdminOrdersPage'
 import AdminOrderDetailsPage from './pages/AdminOrderDetailsPage'
 import AdminMenuPage from './pages/AdminMenuPage'
+import AdminSettingsPage from './pages/AdminSettingsPage'
 import ComponentDemo from './pages/ComponentDemo'
 import './App.css'
 
@@ -52,6 +54,7 @@ function App() {
               <Route path="/admin/orders" element={<AdminOrdersPage />} />
               <Route path="/admin/orders/:orderId" element={<AdminOrderDetailsPage />} />
               <Route path="/admin/menu" element={<AdminMenuPage />} />
+              <Route path="/admin/settings" element={<AdminSettingsPage />} />
               <Route path="/admin/customers" element={<PlaceholderPage title="Customer Management" />} />
               <Route path="/admin/reports" element={<PlaceholderPage title="Reports & Analytics" />} />
               <Route path="/demo" element={<ComponentDemo />} />
@@ -59,6 +62,7 @@ function App() {
               <Route path="/dashboard" element={<PlaceholderPage title="Dashboard" />} />
             </Routes>
             <ToastContainer />
+            <FloatingWhatsApp />
           </CartProvider>
         </NotificationProvider>
       </AuthProvider>

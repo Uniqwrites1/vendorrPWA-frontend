@@ -16,11 +16,65 @@ import {
 } from '../design-system/components'
 import { Icons } from '../design-system/icons'
 import { useAuth } from '../context/AuthContext'
+import { menu as menuAPI } from '../services/api'
+import { formatPrice } from '../utils/currency'
 
 export default function HomePage() {
   const { isAuthenticated, user } = useAuth()
   const [isRestaurantOpen, setIsRestaurantOpen] = useState(true)
   const [currentTime, setCurrentTime] = useState(new Date())
+  const [featuredItems, setFeaturedItems] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [restaurantSettings, setRestaurantSettings] = useState({
+    restaurant_name: 'Vendorr',
+    restaurant_phone: '+234 906 455 4795, +234 916 492 3056',
+    restaurant_email: 'vendorr1@gmail.com',
+    restaurant_address: 'Red Brick, Faculty of Arts, University of Jos, Jos, Plateau State, Nigeria'
+  })
+
+  // Load featured items from API
+  useEffect(() => {
+    const loadFeaturedItems = async () => {
+      try {
+        const response = await menuAPI.getMenuItems()
+        // Filter for featured items
+        const featured = response.data.filter(item => item.is_featured && item.is_available).slice(0, 3)
+        setFeaturedItems(featured)
+      } catch (error) {
+        console.error('Error loading featured items:', error)
+        // Use fallback data if API fails
+        setFeaturedItems([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadFeaturedItems()
+  }, [])
+
+  // Load restaurant settings from API
+  useEffect(() => {
+    const loadRestaurantSettings = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/settings/whatsapp`)
+        if (response.ok) {
+          const data = await response.json()
+          if (data.restaurant_name) {
+            setRestaurantSettings({
+              restaurant_name: data.restaurant_name || 'Vendorr',
+              restaurant_phone: data.restaurant_phone || '+234 906 455 4795',
+              restaurant_email: data.restaurant_email || 'vendorr1@gmail.com',
+              restaurant_address: data.restaurant_address || 'Red Brick, Faculty of Arts, University of Jos'
+            })
+          }
+        }
+      } catch (error) {
+        console.error('Error loading restaurant settings:', error)
+      }
+    }
+
+    loadRestaurantSettings()
+  }, [])
 
   // Update current time every minute
   useEffect(() => {
@@ -43,36 +97,6 @@ export default function HomePage() {
       minute: '2-digit'
     })
   }
-
-  const todaysSpecials = [
-    {
-      id: 1,
-      name: "Signature Beef Burger",
-      description: "Premium beef patty with aged cheddar, caramelized onions, and our signature sauce",
-      price: 125.99,
-      originalPrice: 145.99,
-      image: "/assets/burger-special.jpg",
-      prepTime: "12 min"
-    },
-    {
-      id: 2,
-      name: "Crispy Chicken Wraps",
-      description: "Tender chicken strips with fresh vegetables in a soft tortilla wrap",
-      price: 89.99,
-      originalPrice: 99.99,
-      image: "/assets/wrap-special.jpg",
-      prepTime: "8 min"
-    },
-    {
-      id: 3,
-      name: "Loaded Nachos",
-      description: "Crispy tortilla chips with cheese, jalapeños, guacamole, and sour cream",
-      price: 75.99,
-      originalPrice: 85.99,
-      image: "/assets/nachos-special.jpg",
-      prepTime: "10 min"
-    }
-  ]
 
   const features = [
     {
@@ -212,64 +236,66 @@ export default function HomePage() {
           </div>
 
           <Grid cols="md:grid-cols-2 lg:grid-cols-3" gap="gap-8">
-            {todaysSpecials.map((item) => (
-              <Card key={item.id} className="overflow-hidden hover:shadow-xl transition-shadow group">
-                <div className="relative">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    onError={(e) => {
-                      e.target.src = '/assets/placeholder-food.svg'
-                    }}
-                  />
-                  <div className="absolute top-3 left-3">
-                    <div className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      Deal
+            {loading ? (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-600">Loading featured items...</p>
+              </div>
+            ) : featuredItems.length === 0 ? (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-600">No featured items available at the moment.</p>
+              </div>
+            ) : (
+              featuredItems.map((item) => (
+                <Card key={item.id} className="overflow-hidden hover:shadow-xl transition-shadow group">
+                  <div className="relative">
+                    <img
+                      src={item.image_url || '/assets/placeholder-food.svg'}
+                      alt={item.name}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        e.target.src = '/assets/placeholder-food.svg'
+                      }}
+                    />
+                    <div className="absolute top-3 left-3">
+                      <div className="bg-vendorr-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Featured
+                      </div>
                     </div>
-                  </div>
-                  <div className="absolute top-3 right-3">
-                    <div className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-medium text-gray-700">
-                      <Icons.Clock className="w-3 h-3 inline mr-1" />
-                      {item.prepTime}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {item.name}
-                  </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    {item.description}
-                  </p>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-2xl font-bold text-vendorr-blue-500">
-                        {formatPrice(item.price)}
-                      </span>
-                      <span className="text-lg text-gray-400 line-through">
-                        {formatPrice(item.originalPrice)}
-                      </span>
-                    </div>
-                    <div className="text-sm text-green-600 font-semibold">
-                      Save {formatPrice(item.originalPrice - item.price)}
+                    <div className="absolute top-3 right-3">
+                      <div className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-medium text-gray-700">
+                        <Icons.Clock className="w-3 h-3 inline mr-1" />
+                        {item.preparation_time} min
+                      </div>
                     </div>
                   </div>
 
-                  <Link to="/menu">
-                    <Button
-                      variant="primary"
-                      className="w-full"
-                      disabled={!isRestaurantOpen}
-                    >
-                      {isRestaurantOpen ? 'Order Now' : 'View Details'}
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-            ))}
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {item.name}
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-2">
+                      {item.description}
+                    </p>
+
+                    <div className="flex items-center justify-between mb-4">
+                        <span className="text-2xl font-bold text-vendorr-blue-500">
+                          {formatPrice(item.price)}
+                        </span>
+                      </div>
+
+                      <Link to="/menu">
+                        <Button
+                          variant="primary"
+                          className="w-full"
+                          disabled={!isRestaurantOpen}
+                        >
+                          {isRestaurantOpen ? 'Order Now' : 'View Details'}
+                        </Button>
+                      </Link>
+                    </div>
+                  </Card>
+                ))
+            )}
           </Grid>
         </ContentContainer>
       </Section>
@@ -383,10 +409,8 @@ export default function HomePage() {
                   <Icons.MapPin className="w-6 h-6 text-vendorr-gold-400 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold mb-1">Location</h3>
-                    <p className="text-gray-300">
-                      123 Main Street, Johannesburg<br />
-                      Gauteng, 2000<br />
-                      South Africa
+                    <p className="text-gray-300 whitespace-pre-line">
+                      {restaurantSettings.restaurant_address}
                     </p>
                   </div>
                 </div>
@@ -395,9 +419,14 @@ export default function HomePage() {
                   <Icons.Phone className="w-6 h-6 text-vendorr-gold-400 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold mb-1">Contact</h3>
-                    <p className="text-gray-300">
-                      +27 11 123 4567<br />
-                      info@vendorr.co.za
+                    <p className="text-gray-300 whitespace-pre-line">
+                      {restaurantSettings.restaurant_phone}
+                      {restaurantSettings.restaurant_email && (
+                        <>
+                          <br />
+                          {restaurantSettings.restaurant_email}
+                        </>
+                      )}
                     </p>
                   </div>
                 </div>

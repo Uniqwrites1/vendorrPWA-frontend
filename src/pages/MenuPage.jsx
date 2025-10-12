@@ -16,6 +16,7 @@ import Navbar from '../components/Navbar';
 import MenuItemCard from '../components/MenuItemCard';
 import CustomizationModal from '../components/CustomizationModal';
 import { menu as menuAPI } from '../services/api';
+import { formatPrice } from '../utils/currency';
 
 // Mock menu data - will be replaced with API calls
 const MOCK_MENU_DATA = [
@@ -155,9 +156,9 @@ const SPICE_LEVELS = [
 ];
 
 const PRICE_RANGES = [
-  { id: 'under-15', name: 'Under $15', min: 0, max: 15 },
-  { id: '15-25', name: '$15 - $25', min: 15, max: 25 },
-  { id: 'over-25', name: 'Over $25', min: 25, max: Infinity }
+  { id: 'under-2000', name: 'Under ₦2,000', min: 0, max: 2000 },
+  { id: '2000-3000', name: '₦2,000 - ₦3,000', min: 2000, max: 3000 },
+  { id: 'over-3000', name: 'Over ₦3,000', min: 3000, max: Infinity }
 ];
 
 const SORT_OPTIONS = [
@@ -225,7 +226,7 @@ const MenuPage = () => {
 
     // Category filter
     if (selectedCategory !== 'all') {
-      filtered = filtered.filter(item => item.category_id == selectedCategory);
+      filtered = filtered.filter(item => String(item.category_id) === String(selectedCategory));
     }
 
     // Search filter
@@ -234,7 +235,7 @@ const MenuPage = () => {
       filtered = filtered.filter(item =>
         item.name.toLowerCase().includes(query) ||
         item.description.toLowerCase().includes(query) ||
-        item.ingredients.some(ingredient => ingredient.toLowerCase().includes(query))
+        (item.ingredients && item.ingredients.toLowerCase().includes(query))
       );
     }
 

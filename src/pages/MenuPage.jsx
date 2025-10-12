@@ -241,16 +241,18 @@ const MenuPage = () => {
 
     // Dietary filters
     if (selectedDietaryFilters.length > 0) {
-      filtered = filtered.filter(item =>
-        selectedDietaryFilters.every(filter =>
-          item.dietary.includes(filter) || item.dietary.includes(filter + '-option')
-        )
-      );
+      filtered = filtered.filter(item => {
+        const dietary = item.dietary_tags || item.dietary || [];
+        if (!Array.isArray(dietary)) return false;
+        return selectedDietaryFilters.every(filter =>
+          dietary.includes(filter) || dietary.includes(filter + '-option')
+        );
+      });
     }
 
     // Spice level filter
     if (selectedSpiceLevel !== null) {
-      filtered = filtered.filter(item => item.spiceLevel <= selectedSpiceLevel);
+      filtered = filtered.filter(item => (item.spice_level || item.spiceLevel || 0) <= selectedSpiceLevel);
     }
 
     // Price range filter

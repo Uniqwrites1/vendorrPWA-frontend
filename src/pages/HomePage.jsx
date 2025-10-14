@@ -139,20 +139,6 @@ export default function HomePage() {
       <Section className="bg-gradient-to-br from-vendorr-blue-500 to-vendorr-blue-700 text-white py-20">
         <ContentContainer>
           <div className="text-center max-w-4xl mx-auto">
-            {/* Restaurant Status */}
-            <div className="mb-6">
-              <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium ${
-                isRestaurantOpen
-                  ? 'bg-green-100 text-green-800'
-                  : 'bg-red-100 text-red-800'
-              }`}>
-                <div className={`w-2 h-2 rounded-full mr-2 ${
-                  isRestaurantOpen ? 'bg-green-500' : 'bg-red-500'
-                }`} />
-                {isRestaurantOpen ? 'Open Now' : 'Closed'} • {formatTime(currentTime)}
-              </div>
-            </div>
-
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
               Skip the Wait,<br />
@@ -166,28 +152,16 @@ export default function HomePage() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              {isRestaurantOpen ? (
-                <Link to="/menu">
-                  <Button
-                    variant="gold"
-                    size="lg"
-                    className="w-full sm:w-auto text-lg px-8 py-4 shadow-xl hover:scale-105 transition-transform"
-                  >
-                    <Icons.ShoppingCart className="w-6 h-6 mr-3" />
-                    Order Now
-                  </Button>
-                </Link>
-              ) : (
+              <Link to="/menu">
                 <Button
-                  variant="outline"
+                  variant="gold"
                   size="lg"
-                  disabled
-                  className="w-full sm:w-auto text-lg px-8 py-4 border-2 border-white/30 text-white/70"
+                  className="w-full sm:w-auto text-lg px-8 py-4 shadow-xl hover:scale-105 transition-transform"
                 >
-                  <Icons.Clock className="w-6 h-6 mr-3" />
-                  Closed - Opens at 9:00 AM
+                  <Icons.ShoppingCart className="w-6 h-6 mr-3" />
+                  Order Now
                 </Button>
-              )}
+              </Link>
 
               <Link to="/menu">
                 <Button
@@ -278,13 +252,13 @@ export default function HomePage() {
                         </span>
                       </div>
 
-                      <Link to="/menu">
+                                            <Link to={`/menu`}>
                         <Button
                           variant="primary"
+                          size="sm"
                           className="w-full"
-                          disabled={!isRestaurantOpen}
                         >
-                          {isRestaurantOpen ? 'Order Now' : 'View Details'}
+                          Order Now
                         </Button>
                       </Link>
                     </div>
@@ -428,36 +402,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Opening Hours</h2>
-              <div className="space-y-3">
-                {[
-                  { day: "Monday - Friday", hours: "9:00 AM - 10:00 PM" },
-                  { day: "Saturday", hours: "10:00 AM - 11:00 PM" },
-                  { day: "Sunday", hours: "10:00 AM - 9:00 PM" }
-                ].map((schedule, index) => (
-                  <div key={index} className="flex justify-between items-center py-2 border-b border-gray-700">
-                    <span className="font-medium">{schedule.day}</span>
-                    <span className="text-vendorr-gold-400">{schedule.hours}</span>
-                  </div>
-                ))}
-              </div>
 
-              <div className="mt-6 p-4 bg-vendorr-blue-500 rounded-lg">
-                <div className="flex items-center space-x-2">
-                  <div className={`w-3 h-3 rounded-full ${isRestaurantOpen ? 'bg-green-400' : 'bg-red-400'}`} />
-                  <span className="font-semibold">
-                    {isRestaurantOpen ? 'Open Now' : 'Currently Closed'}
-                  </span>
-                </div>
-                <p className="text-sm text-blue-100 mt-1">
-                  {isRestaurantOpen
-                    ? 'Order now for pickup or browse our menu for later'
-                    : 'We open at 9:00 AM. Browse our menu and place your order when we\'re open'
-                  }
-                </p>
-              </div>
-            </div>
           </Grid>
         </ContentContainer>
       </Section>

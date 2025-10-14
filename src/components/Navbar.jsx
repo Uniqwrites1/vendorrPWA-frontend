@@ -84,18 +84,6 @@ export default function Navbar() {
                   My Orders
                 </Link>
               )}
-              {isStaff() && (
-                <Link
-                  to="/admin"
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                    isActive('/admin')
-                      ? 'bg-vendorr-blue text-white'
-                      : 'text-vendorr-blue hover:bg-vendorr-gray'
-                  }`}
-                >
-                  Admin Dashboard
-                </Link>
-              )}
             </div>
           </div>
 
@@ -215,19 +203,6 @@ export default function Navbar() {
                 }`}
               >
                 My Orders
-              </Link>
-            )}
-            {isStaff() && (
-              <Link
-                to="/dashboard"
-                onClick={closeMenu}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                  isActive('/dashboard')
-                    ? 'bg-vendorr-blue text-white'
-                    : 'text-vendorr-blue hover:bg-vendorr-gray'
-                }`}
-              >
-                Dashboard
               </Link>
             )}
           </div>

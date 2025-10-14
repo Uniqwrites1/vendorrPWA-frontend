@@ -5,6 +5,7 @@ import { PageContainer, Section, ContentContainer } from '../components/Layout';
 import { Card, Button, Typography } from '../design-system/components';
 import { Icons } from '../design-system/icons';
 import Navbar from '../components/Navbar';
+import { formatPrice } from '../utils/currency';
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -53,12 +54,7 @@ const CartPage = () => {
     }
   };
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price);
-  };
+  // formatPrice is now imported from '../utils/currency'
 
   if (cart.length === 0) {
     return (

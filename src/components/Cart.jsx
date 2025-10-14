@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { Card, Button, Badge } from '../design-system/components'
 import { Icons } from '../design-system/icons'
+import { formatPrice } from '../utils/currency'
 
 export default function Cart({
   isOpen,
@@ -17,12 +18,7 @@ export default function Cart({
   const tax = subtotal * 0.08 // 8% tax
   const total = subtotal + tax
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price)
-  }
+  // formatPrice is now imported from '../utils/currency'
 
   const handleCheckout = () => {
     if (cart.length === 0) return

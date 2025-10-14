@@ -6,6 +6,7 @@ import { PageContainer, Section, ContentContainer } from '../components/Layout';
 import { Card, Button, Typography } from '../design-system/components';
 import { Icons } from '../design-system/icons';
 import { orders as ordersAPI } from '../services/api';
+import { formatPrice } from '../utils/currency';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -27,12 +28,7 @@ const CheckoutPage = () => {
   const tax = subtotal * 0.08;
   const total = subtotal + tax;
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price);
-  };
+  // formatPrice is now imported from '../utils/currency'
 
   const validateForm = () => {
     const newErrors = {};

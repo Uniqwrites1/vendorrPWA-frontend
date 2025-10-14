@@ -87,15 +87,15 @@ export const menu = {
 
 export const orders = {
   // Customer orders
-  createOrder: (orderData) => api.post('/api/orders', orderData),
+  createOrder: (orderData) => api.post('/api/orders/', orderData),
 
-  getMyOrders: () => api.get('/api/orders/my'),
+  getMyOrders: () => api.get('/api/orders/my/'),
 
-  getOrder: (orderId) => api.get(`/api/orders/${orderId}`),
+  getOrder: (orderId) => api.get(`/api/orders/${orderId}/`),
 
-  trackOrder: (orderNumber) => api.get(`/api/orders/track/${orderNumber}`),
+  trackOrder: (orderNumber) => api.get(`/api/orders/track/${orderNumber}/`),
 
-  cancelOrder: (orderId) => api.post(`/api/orders/${orderId}/cancel`),
+  cancelOrder: (orderId) => api.post(`/api/orders/${orderId}/cancel/`),
 
   // Admin endpoints (will be added later)
   getAllOrders: (status = null) => {

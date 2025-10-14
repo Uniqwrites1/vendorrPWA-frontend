@@ -218,10 +218,30 @@ export default function Navbar() {
           {/* Mobile Auth Section */}
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="px-5 space-y-3">
+              {/* Notification Bell (only for authenticated users) */}
+              {isAuthenticated && (
+                <div className="flex items-center w-full p-2">
+                  <NotificationBell />
+                </div>
+              )}
+
               {/* Cart Button */}
-              <button className="flex items-center w-full p-2 text-vendorr-blue hover:bg-vendorr-gray rounded-lg transition-colors duration-200">
-                <Icons.Cart />
-                <span className="ml-3">Cart (0)</span>
+              <button
+                onClick={() => {
+                  toggleCart()
+                  closeMenu()
+                }}
+                className="flex items-center justify-between w-full p-2 text-vendorr-blue hover:bg-vendorr-gray rounded-lg transition-colors duration-200"
+              >
+                <div className="flex items-center">
+                  <Icons.ShoppingCart className="w-5 h-5" />
+                  <span className="ml-3">Cart</span>
+                </div>
+                {cartItemCount > 0 && (
+                  <span className="bg-vendorr-gold text-vendorr-blue text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold">
+                    {cartItemCount > 99 ? '99+' : cartItemCount}
+                  </span>
+                )}
               </button>
 
               {isAuthenticated ? (

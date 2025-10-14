@@ -65,42 +65,47 @@ export default function PWAInstallPrompt() {
     localStorage.setItem('pwa-install-dismissed', Date.now().toString())
   }
 
-  // Don't show if already installed or recently dismissed
-  if (isStandalone || !showInstallPrompt) {
+  // Don't show if already installed
+  if (isStandalone) {
     return null
   }
 
-  // Check if recently dismissed (within 7 days)
+  // Don't show if not ready yet
+  if (!showInstallPrompt) {
+    return null
+  }
+
+  // Check if recently dismissed (within 24 hours for testing)
   const dismissedTime = localStorage.getItem('pwa-install-dismissed')
-  if (dismissedTime && Date.now() - parseInt(dismissedTime) < 7 * 24 * 60 * 60 * 1000) {
+  if (dismissedTime && Date.now() - parseInt(dismissedTime) < 24 * 60 * 60 * 1000) {
     return null
   }
 
   return (
-    <div className="bg-vendorr-blue-500 text-white py-3 px-4">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-3">
+    <div className="bg-gradient-to-r from-vendorr-blue-600 to-vendorr-blue-500 text-white py-3 px-4 shadow-lg">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+        <div className="flex items-center space-x-3 flex-1 min-w-0">
           <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
             <Icons.Download className="w-6 h-6 text-vendorr-blue-500" />
           </div>
-          <div>
+          <div className="flex-1 min-w-0">
             <h3 className="font-semibold text-sm">Install Vendorr App</h3>
-            <p className="text-xs text-blue-100">
+            <p className="text-xs text-blue-100 line-clamp-2">
               {isIOS
-                ? 'Tap Share button, then "Add to Home Screen" for faster access'
+                ? 'Tap Share (⬆️) button, then "Add to Home Screen"'
                 : 'Get faster access and offline ordering capability'
               }
             </p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 flex-shrink-0">
           {!isIOS && deferredPrompt && (
             <Button
               variant="gold"
               size="sm"
               onClick={handleInstallClick}
-              className="text-xs px-3 py-1"
+              className="text-xs px-3 py-1.5 whitespace-nowrap font-semibold"
             >
               Install
             </Button>
@@ -108,10 +113,10 @@ export default function PWAInstallPrompt() {
 
           <button
             onClick={handleDismiss}
-            className="p-1 hover:bg-white/10 rounded transition-colors"
+            className="p-1.5 hover:bg-white/20 rounded-full transition-colors"
             aria-label="Dismiss install prompt"
           >
-            <Icons.Close className="w-4 h-4" />
+            <Icons.Close className="w-5 h-5" />
           </button>
         </div>
       </div>

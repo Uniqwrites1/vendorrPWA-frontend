@@ -128,12 +128,7 @@ export default function HomePage() {
     { number: "4.8★", label: "Average Rating" }
   ]
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-ZA', {
-      style: 'currency',
-      currency: 'ZAR'
-    }).format(price)
-  }
+  // formatPrice is imported from '../utils/currency' at the top
 
   return (
     <PageContainer>

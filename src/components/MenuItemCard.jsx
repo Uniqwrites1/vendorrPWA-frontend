@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Card, Badge, Button } from '../design-system/components'
 import { Icons } from '../design-system/icons'
 import { useCart } from '../context/CartContext'
+import { formatPrice } from '../utils/currency'
 
 export default function MenuItemCard({
   item,
@@ -44,12 +45,7 @@ export default function MenuItemCard({
     }
   }
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price)
-  }
+  // formatPrice is now imported from '../utils/currency'
 
   const getSpiceLevel = (level) => {
     const levels = {

@@ -32,7 +32,11 @@ export const NotificationProvider = ({ children }) => {
     if (!user || !token) return
 
     const connectWebSocket = () => {
-      const wsUrl = `ws://localhost:8000/ws/notifications?token=${token}`
+      // Get base URL and convert to WebSocket protocol
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      const wsProtocol = baseUrl.startsWith('https') ? 'wss' : 'ws'
+      const wsHost = baseUrl.replace(/^https?:\/\//, '')
+      const wsUrl = `${wsProtocol}://${wsHost}/ws/notifications?token=${token}`
       const ws = new WebSocket(wsUrl)
 
       ws.onopen = () => {

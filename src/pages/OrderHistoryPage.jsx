@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { PageContainer, Section, ContentContainer } from '../components/Layout';
 import { Card, Button, Typography } from '../design-system/components';
 import { Icons } from '../design-system/icons';
+import Navbar from '../components/Navbar';
 import { orders as ordersAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { formatPrice } from '../utils/currency';
@@ -105,6 +106,7 @@ const OrderHistoryPage = () => {
 
   return (
     <PageContainer>
+      <Navbar />
       <Section className="min-h-screen bg-gray-50 py-8">
         <ContentContainer>
           {/* Header */}

@@ -5,6 +5,7 @@ import { Card, Button, Typography } from '../design-system/components';
 import { Icons } from '../design-system/icons';
 import { orders as ordersAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import { formatPrice } from '../utils/currency';
 
 const OrderStatusPage = () => {
   const { orderId } = useParams();
@@ -59,13 +60,6 @@ const OrderStatusPage = () => {
 
     return () => clearInterval(pollInterval);
   }, [orderId, location.state, isAuthenticated, navigate]);
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-ZA', {
-      style: 'currency',
-      currency: 'ZAR'
-    }).format(price);
-  };
 
   const formatDate = (date) => {
     return new Date(date).toLocaleString('en-ZA', {

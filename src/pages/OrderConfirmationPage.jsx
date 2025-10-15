@@ -15,6 +15,7 @@ import {
 import { Icons } from '../design-system/icons'
 import { useCart } from '../context/CartContext'
 import { orders as ordersAPI } from '../services/api'
+import { formatPrice } from '../utils/currency'
 
 // Static bank details for display
 const BANK_DETAILS = {
@@ -74,13 +75,6 @@ export default function OrderConfirmationPage() {
 
     loadOrder()
   }, [orderId, location.state, clearCart])
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-ZA', {
-      style: 'currency',
-      currency: 'ZAR'
-    }).format(price)
-  }
 
   const formatDateTime = (dateString) => {
     return new Date(dateString).toLocaleString('en-ZA', {

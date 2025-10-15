@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Button, Badge } from '../design-system/components'
 import { Icons } from '../design-system/icons'
 import { useCart } from '../context/CartContext'
+import { formatPrice } from '../utils/currency'
 
 export default function CustomizationModal({
   isOpen,
@@ -107,13 +108,6 @@ export default function CustomizationModal({
     } finally {
       setIsLoading(false)
     }
-  }
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price)
   }
 
   if (!isOpen || !currentItem) return null

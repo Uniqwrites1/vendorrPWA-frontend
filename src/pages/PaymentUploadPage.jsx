@@ -12,6 +12,7 @@ import {
   Typography
 } from '../design-system/components'
 import { Icons } from '../design-system/icons'
+import { formatPrice } from '../utils/currency'
 
 export default function PaymentUploadPage() {
   const { orderId } = useParams()
@@ -42,13 +43,6 @@ export default function PaymentUploadPage() {
       setLoading(false)
     }, 1000)
   }, [orderId])
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-ZA', {
-      style: 'currency',
-      currency: 'ZAR'
-    }).format(price)
-  }
 
   const handleFileSelect = (event) => {
     const file = event.target.files[0]

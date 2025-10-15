@@ -13,6 +13,7 @@ import {
   Badge
 } from '../design-system/components'
 import { Icons } from '../design-system/icons'
+import { formatPrice } from '../utils/currency'
 
 export default function AdminMenuPage() {
   const navigate = useNavigate()
@@ -128,13 +129,6 @@ export default function AdminMenuPage() {
     }, 1000)
   }, [])
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-ZA', {
-      style: 'currency',
-      currency: 'ZAR'
-    }).format(price)
-  }
-
   const toggleAvailability = (itemId) => {
     setMenuItems(menuItems.map(item =>
       item.id === itemId
@@ -210,7 +204,7 @@ export default function AdminMenuPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Price (ZAR)
+                    Price (₦ Naira)
                   </label>
                   <input
                     type="number"

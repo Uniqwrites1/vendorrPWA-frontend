@@ -5,6 +5,7 @@ import { Card, Button, Typography } from '../design-system/components';
 import { Icons } from '../design-system/icons';
 import { orders as ordersAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import { formatPrice } from '../utils/currency';
 
 const OrderHistoryPage = () => {
   const navigate = useNavigate();
@@ -41,12 +42,7 @@ const OrderHistoryPage = () => {
     loadOrders();
   }, [isAuthenticated, navigate]);
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price);
-  };
+
 
   const formatDate = (date) => {
     return new Date(date).toLocaleDateString('en-US', {

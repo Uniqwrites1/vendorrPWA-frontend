@@ -42,6 +42,12 @@ export default function OrderStatus({ order, onTrackOrder, showDetails = false }
         text: 'Ready for Pickup',
         description: 'Your order is ready!'
       },
+      'delivered': {
+        color: 'bg-green-100 text-green-800',
+        icon: Icons.CheckCircle2,
+        text: 'Delivered',
+        description: 'Your order has been delivered'
+      },
       'completed': {
         color: 'bg-green-100 text-green-800',
         icon: Icons.CheckCircle2,

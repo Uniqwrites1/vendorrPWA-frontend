@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#grad)"/>
+
+  <!-- Fork (left) -->
+  <path d="M 30 35 L 30 25 M 28 35 L 28 30 M 32 35 L 32 30 M 30 35 L 30 65"
+        stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Knife (right) -->
+  <path d="M 70 25 L 70 40 L 72 42 L 70 44 L 70 65"
+        stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Plate (center) -->
+  <ellipse cx="50" cy="45" rx="12" ry="4" fill="#FFD700" opacity="0.8"/>
+
+  <!-- V letter -->
+  <text x="50" y="80" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+        fill="white" text-anchor="middle">V</text>
+</svg>

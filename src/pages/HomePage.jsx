@@ -140,12 +140,12 @@ export default function HomePage() {
         <ContentContainer>
           <div className="text-center max-w-4xl mx-auto">
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-2xl">
               Skip the Wait,<br />
               <span className="text-vendorr-gold-400">Order Ahead</span>
             </h1>
 
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl mb-8 font-medium text-white drop-shadow-lg max-w-3xl mx-auto">
               Pre-order your favorite meals from Vendorr and pick them up when they're ready.
               No queues, no waiting, just delicious food on your schedule.
             </p>
@@ -178,11 +178,11 @@ export default function HomePage() {
             {/* Quick Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-vendorr-gold-400 mb-1">
+                <div key={index} className="text-center bg-white/10 backdrop-blur-sm rounded-lg py-4 px-3">
+                  <div className="text-3xl md:text-4xl font-extrabold text-vendorr-gold-400 mb-2 drop-shadow-lg">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-blue-200">
+                  <div className="text-sm md:text-base font-semibold text-white">
                     {stat.label}
                   </div>
                 </div>
@@ -370,40 +370,36 @@ export default function HomePage() {
       {/* Location & Hours Section */}
       <Section className="bg-gray-900 text-white py-16">
         <ContentContainer>
-          <Grid cols="md:grid-cols-2" gap="gap-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Visit Our Restaurant</h2>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <Icons.MapPin className="w-6 h-6 text-vendorr-gold-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold mb-1">Location</h3>
-                    <p className="text-gray-300 whitespace-pre-line">
-                      {restaurantSettings.restaurant_address}
-                    </p>
-                  </div>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Visit Our Restaurant</h2>
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+              <div className="flex items-start space-x-4">
+                <Icons.MapPin className="w-6 h-6 text-vendorr-gold-400 mt-1 flex-shrink-0" />
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-2 text-lg">Location</h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {restaurantSettings.restaurant_address}
+                  </p>
                 </div>
+              </div>
 
-                <div className="flex items-start space-x-3">
-                  <Icons.Phone className="w-6 h-6 text-vendorr-gold-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold mb-1">Contact</h3>
-                    <p className="text-gray-300 whitespace-pre-line">
-                      {restaurantSettings.restaurant_phone}
-                      {restaurantSettings.restaurant_email && (
-                        <>
-                          <br />
-                          {restaurantSettings.restaurant_email}
-                        </>
-                      )}
-                    </p>
-                  </div>
+              <div className="flex items-start space-x-4">
+                <Icons.Phone className="w-6 h-6 text-vendorr-gold-400 mt-1 flex-shrink-0" />
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-2 text-lg">Contact</h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {restaurantSettings.restaurant_phone}
+                    {restaurantSettings.restaurant_email && (
+                      <>
+                        <br />
+                        {restaurantSettings.restaurant_email}
+                      </>
+                    )}
+                  </p>
                 </div>
               </div>
             </div>
-
-
-          </Grid>
+          </div>
         </ContentContainer>
       </Section>
 

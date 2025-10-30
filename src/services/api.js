@@ -97,6 +97,12 @@ export const orders = {
 
   cancelOrder: (orderId) => api.post(`/api/orders/${orderId}/cancel/`),
 
+  uploadReceipt: (formData) => api.post('/api/orders/upload-receipt', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  }),
+
   // Admin endpoints (will be added later)
   getAllOrders: (status = null) => {
     const url = status ? `/api/test/admin/orders?status=${status}` : '/api/test/admin/orders'

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageContainer, Section, ContentContainer } from '../components/Layout';
+import Navbar from '../components/Navbar';
 import { Card, Button, Typography } from '../design-system/components';
 import { Icons } from '../design-system/icons';
 import { useAuth } from '../context/AuthContext';
@@ -81,6 +82,7 @@ const ProfilePage = () => {
 
   return (
     <PageContainer>
+      <Navbar />
       <Section className="min-h-screen bg-gray-50 py-8">
         <ContentContainer>
           {/* Header */}

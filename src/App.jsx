@@ -15,6 +15,7 @@ import OrderStatusPage from './pages/OrderStatusPage'
 import OrderHistoryPage from './pages/OrderHistoryPage'
 import OrderConfirmationPage from './pages/OrderConfirmationPage'
 import PaymentUploadPage from './pages/PaymentUploadPage'
+import ProfilePage from './pages/ProfilePage'
 import AdminDashboard from './pages/AdminDashboard'
 import AdminOrdersPage from './pages/AdminOrdersPage'
 import AdminOrderDetailsPage from './pages/AdminOrderDetailsPage'
@@ -56,7 +57,7 @@ function App() {
               <Route path="/admin/customers" element={<PlaceholderPage title="Customer Management" />} />
               <Route path="/admin/reports" element={<PlaceholderPage title="Reports & Analytics" />} />
               <Route path="/demo" element={<ComponentDemo />} />
-              <Route path="/profile" element={<PlaceholderPage title="Profile" />} />
+              <Route path="/profile" element={<ProfilePage />} />
               <Route path="/dashboard" element={<PlaceholderPage title="Dashboard" />} />
             </Routes>
             <ToastContainer />

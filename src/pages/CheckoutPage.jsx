@@ -67,11 +67,28 @@ const CheckoutPage = () => {
     setIsLoading(true);
 
     try {
+      let receiptUrl = null;
+
+      // Upload receipt if provided
+      if (orderInfo.proofOfPayment) {
+        const formData = new FormData();
+        formData.append('file', orderInfo.proofOfPayment);
+
+        const uploadResponse = await ordersAPI.uploadReceipt(formData);
+        receiptUrl = uploadResponse.data.file_url;
+      }
+
+      // Generate payment reference
+      const paymentRef = `ORDER-${Date.now().toString().slice(-6)}`;
+
       // Prepare order data for API
       const orderData = {
         order_type: orderInfo.orderType,
         customer_phone: orderInfo.phone,
         special_instructions: orderInfo.specialInstructions,
+        payment_method: 'bank_transfer',
+        payment_reference: paymentRef,
+        bank_transfer_receipt: receiptUrl,
         items: cart.map(item => ({
           menu_item_id: item.id,
           quantity: item.quantity,

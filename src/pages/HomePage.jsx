@@ -176,13 +176,13 @@ export default function HomePage() {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto mt-8">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center bg-white/10 backdrop-blur-sm rounded-lg py-4 px-3">
-                  <div className="text-3xl md:text-4xl font-extrabold text-vendorr-gold-400 mb-2 drop-shadow-lg">
+                <div key={index} className="text-center bg-white/20 backdrop-blur-md rounded-lg py-6 px-4 border border-white/30 hover:bg-white/30 transition-all hover:scale-105">
+                  <div className="text-3xl md:text-4xl font-extrabold text-white mb-2 drop-shadow-lg">
                     {stat.number}
                   </div>
-                  <div className="text-sm md:text-base font-semibold text-white">
+                  <div className="text-sm md:text-base font-semibold text-white/90">
                     {stat.label}
                   </div>
                 </div>

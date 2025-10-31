@@ -101,6 +101,9 @@ const ProfilePage = () => {
 
   const handleLogout = () => {
     logout();
+    navigate('/login');
+  };
+
   if (!isAuthenticated || !user) {
     return null;
   }
@@ -123,9 +126,6 @@ const ProfilePage = () => {
     );
   }
 
-  return (
-    <PageContainer>
-      <Navbar />
   return (
     <PageContainer>
       <Navbar />

@@ -136,16 +136,17 @@ export default function HomePage() {
       <PWAInstallPrompt />
 
       {/* Main Banner Section */}
-      <Section className="bg-gradient-to-br from-vendorr-blue-500 to-vendorr-blue-700 text-white py-20">
-        <ContentContainer>
+      <Section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-blue-600 opacity-90"></div>
+        <ContentContainer className="relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-2xl">
               Skip the Wait,<br />
-              <span className="text-vendorr-gold-400">Order Ahead</span>
+              <span className="text-yellow-400 drop-shadow-2xl">Order Ahead</span>
             </h1>
 
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl mb-8 text-white font-semibold max-w-3xl mx-auto drop-shadow-2xl">
               Pre-order your favorite meals from Vendorr and pick them up when they're ready.
               No queues, no waiting, just delicious food on your schedule.
             </p>
@@ -370,40 +371,36 @@ export default function HomePage() {
       {/* Location & Hours Section */}
       <Section className="bg-gray-900 text-white py-16">
         <ContentContainer>
-          <Grid cols="md:grid-cols-2" gap="gap-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Visit Our Restaurant</h2>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <Icons.MapPin className="w-6 h-6 text-vendorr-gold-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold mb-1">Location</h3>
-                    <p className="text-gray-300 whitespace-pre-line">
-                      {restaurantSettings.restaurant_address}
-                    </p>
-                  </div>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Visit Our Restaurant</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="flex items-start space-x-4">
+                <Icons.MapPin className="w-6 h-6 text-yellow-400 mt-1 flex-shrink-0" />
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-2 text-lg">Location</h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {restaurantSettings.restaurant_address}
+                  </p>
                 </div>
+              </div>
 
-                <div className="flex items-start space-x-3">
-                  <Icons.Phone className="w-6 h-6 text-vendorr-gold-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold mb-1">Contact</h3>
-                    <p className="text-gray-300 whitespace-pre-line">
-                      {restaurantSettings.restaurant_phone}
-                      {restaurantSettings.restaurant_email && (
-                        <>
-                          <br />
-                          {restaurantSettings.restaurant_email}
-                        </>
-                      )}
-                    </p>
-                  </div>
+              <div className="flex items-start space-x-4">
+                <Icons.Phone className="w-6 h-6 text-yellow-400 mt-1 flex-shrink-0" />
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-2 text-lg">Contact</h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {restaurantSettings.restaurant_phone}
+                    {restaurantSettings.restaurant_email && (
+                      <>
+                        <br />
+                        {restaurantSettings.restaurant_email}
+                      </>
+                    )}
+                  </p>
                 </div>
               </div>
             </div>
-
-
-          </Grid>
+          </div>
         </ContentContainer>
       </Section>
 

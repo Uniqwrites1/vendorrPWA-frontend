@@ -5,11 +5,13 @@ import Navbar from '../components/Navbar';
 import { Card, Button, Typography } from '../design-system/components';
 import { Icons } from '../design-system/icons';
 import { useAuth } from '../context/AuthContext';
+import { auth } from '../services/api';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,15 +25,38 @@ const ProfilePage = () => {
       return;
     }
 
-    // Load user data
-    if (user) {
-      setFormData({
-        name: user.name || user.full_name || '',
-        email: user.email || '',
-        phone: user.phone || user.phone_number || '',
-        address: user.address || ''
-      });
-    }
+    // Load complete user data from API
+    const loadUserData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await auth.getCurrentUser();
+        const userData = response.data;
+
+        console.log('👤 User profile loaded:', userData);
+
+        setFormData({
+          name: userData.name || userData.full_name || `${userData.first_name || ''} ${userData.last_name || ''}`.trim() || '',
+          email: userData.email || '',
+          phone: userData.phone || userData.phone_number || '',
+          address: userData.address || ''
+        });
+      } catch (error) {
+        console.error('Error loading user profile:', error);
+        // Fallback to user data from context
+        if (user) {
+          setFormData({
+            name: user.name || user.full_name || `${user.first_name || ''} ${user.last_name || ''}`.trim() || '',
+            email: user.email || '',
+            phone: user.phone || user.phone_number || '',
+            address: user.address || ''
+          });
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadUserData();
   }, [isAuthenticated, user, navigate]);
 
   const handleInputChange = (e) => {
@@ -46,10 +71,13 @@ const ProfilePage = () => {
     e.preventDefault();
 
     try {
-      // TODO: Implement API call to update user profile
-      // await api.updateProfile(formData);
+      // Update user profile via API
+      await auth.updateProfile({
+        name: formData.name,
+        phone: formData.phone,
+        address: formData.address
+      });
 
-      // For now, just show success message
       window.dispatchEvent(new CustomEvent('showToast', {
         detail: {
           title: 'Success',
@@ -64,7 +92,7 @@ const ProfilePage = () => {
       window.dispatchEvent(new CustomEvent('showToast', {
         detail: {
           title: 'Error',
-          message: 'Failed to update profile. Please try again.',
+          message: error.response?.data?.detail || 'Failed to update profile. Please try again.',
           type: 'error'
         }
       }));
@@ -73,13 +101,31 @@ const ProfilePage = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
-  };
-
   if (!isAuthenticated || !user) {
     return null;
   }
 
+  if (isLoading) {
+    return (
+      <PageContainer>
+        <Navbar />
+        <Section className="min-h-screen bg-gray-50 py-8">
+          <ContentContainer>
+            <div className="text-center py-16">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-vendorr-blue mx-auto"></div>
+              <Typography variant="body1" className="mt-4 text-gray-600">
+                Loading profile...
+              </Typography>
+            </div>
+          </ContentContainer>
+        </Section>
+      </PageContainer>
+    );
+  }
+
+  return (
+    <PageContainer>
+      <Navbar />
   return (
     <PageContainer>
       <Navbar />

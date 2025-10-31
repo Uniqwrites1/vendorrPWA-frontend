@@ -114,7 +114,8 @@ export const NotificationProvider = ({ children }) => {
       type: data.type || 'info', // info, success, warning, error
       timestamp: new Date(data.timestamp || Date.now()),
       read: false,
-      data: data.data || {}
+      data: data.data || {},
+      notification_type: data.notification_type
     }
 
     setNotifications(prev => [notification, ...prev])
@@ -127,6 +128,12 @@ export const NotificationProvider = ({ children }) => {
 
     // Show in-app notification
     showInAppNotification(notification)
+
+    // Dispatch custom event for order notifications
+    if (data.notification_type === 'order_status') {
+      const event = new CustomEvent('orderNotification', { detail: notification })
+      window.dispatchEvent(event)
+    }
   }, [permission])
 
   // Request notification permission

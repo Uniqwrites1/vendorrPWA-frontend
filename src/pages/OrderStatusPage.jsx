@@ -26,6 +26,8 @@ const OrderStatusPage = () => {
 
       // Try to get order from location state first (coming from checkout)
       if (location.state?.order) {
+        console.log('📦 Order from location state:', location.state.order);
+        console.log('📦 Order status:', location.state.order.status);
         setOrder(location.state.order);
         setIsLoading(false);
         return;
@@ -35,6 +37,8 @@ const OrderStatusPage = () => {
       try {
         setIsLoading(true);
         const response = await ordersAPI.getOrder(orderId);
+        console.log('📦 Order fetched from API:', response.data);
+        console.log('📦 Order status:', response.data.status);
         setOrder(response.data);
         setError(null);
       } catch (err) {
@@ -47,19 +51,41 @@ const OrderStatusPage = () => {
 
     loadOrder();
 
-    // Set up polling for real-time updates every 30 seconds
+    // Set up polling for real-time updates every 10 seconds (more frequent)
     const pollInterval = setInterval(async () => {
       if (isAuthenticated && orderId) {
         try {
           const response = await ordersAPI.getOrder(orderId);
+          console.log('🔄 Order refreshed:', response.data.status);
           setOrder(response.data);
         } catch (err) {
           console.error('Error refreshing order:', err);
         }
       }
-    }, 30000); // Poll every 30 seconds
+    }, 10000); // Poll every 10 seconds for faster updates
 
-    return () => clearInterval(pollInterval);
+    // WebSocket listener for real-time order status updates
+    const handleOrderNotification = (event) => {
+      const notification = event.detail;
+      if (notification.notification_type === 'order_status' &&
+          notification.data?.order_id === parseInt(orderId)) {
+        console.log('🔔 WebSocket notification - Order status changed to:', notification.data.status);
+        // Immediately fetch fresh order data
+        ordersAPI.getOrder(orderId).then(response => {
+          console.log('✨ Order updated from notification:', response.data.status);
+          setOrder(response.data);
+        }).catch(err => {
+          console.error('Error fetching updated order:', err);
+        });
+      }
+    };
+
+    window.addEventListener('orderNotification', handleOrderNotification);
+
+    return () => {
+      clearInterval(pollInterval);
+      window.removeEventListener('orderNotification', handleOrderNotification);
+    };
   }, [orderId, location.state, isAuthenticated, navigate]);
 
   const formatDate = (date) => {

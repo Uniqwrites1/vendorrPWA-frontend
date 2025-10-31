@@ -19,10 +19,10 @@ import { formatPrice } from '../utils/currency'
 
 // Static bank details for display
 const BANK_DETAILS = {
-  accountName: 'Vendorr Restaurant',
-  bank: 'First National Bank (FNB)',
-  accountNumber: '62 1234 5678 90',
-  branchCode: '250655'
+  accountName: 'Uniqwrtes Edtech Services-vendorr',
+  bank: 'Kuda MFB',
+  accountNumber: '3002871052',
+  branchCode: ''
 }
 
 export default function OrderConfirmationPage() {

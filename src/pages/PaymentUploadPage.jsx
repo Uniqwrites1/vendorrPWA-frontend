@@ -32,10 +32,10 @@ export default function PaymentUploadPage() {
         status: 'pending_payment',
         total: 214.97,
         bankDetails: {
-          accountName: 'Vendorr Restaurant',
-          bank: 'FNB',
-          accountNumber: '1234567890',
-          branchCode: '250655',
+          accountName: 'Uniqwrtes Edtech Services-vendorr',
+          bank: 'Kuda MFB',
+          accountNumber: '3002871052',
+          branchCode: '',
           reference: 'VEN-' + Date.now()
         }
       }

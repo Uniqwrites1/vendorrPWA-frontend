@@ -281,8 +281,19 @@ const OrderHistoryPage = () => {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="text-vendorr-blue hover:text-vendorr-blue-dark"
+                          onClick={() => {
+                            // TODO: Implement review modal or navigate to review page
+                            window.dispatchEvent(new CustomEvent('showToast', {
+                              detail: {
+                                title: 'Coming Soon',
+                                message: 'Review feature will be available soon!',
+                                type: 'info'
+                              }
+                            }));
+                          }}
+                          className="text-vendorr-blue hover:text-vendorr-blue-dark inline-flex items-center"
                         >
+                          <Icons.Star className="w-4 h-4 mr-1" />
                           Write Review
                         </Button>
                       )}

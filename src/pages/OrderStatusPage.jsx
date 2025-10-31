@@ -125,6 +125,14 @@ const OrderStatusPage = () => {
           title: 'Ready for Pickup',
           description: 'Your order is ready and waiting for pickup!'
         };
+      case 'delivered':
+        return {
+          icon: Icons.CheckCircle,
+          color: 'text-green-600',
+          bgColor: 'bg-green-100',
+          title: 'Delivered',
+          description: 'Your order has been delivered. Enjoy your meal!'
+        };
       case 'completed':
         return {
           icon: Icons.Check,

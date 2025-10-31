@@ -238,15 +238,15 @@ const CheckoutPage = () => {
                       <div
                         className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
                           orderInfo.orderType === 'pickup'
-                            ? 'border-vendorr-blue-500 bg-vendorr-blue-50'
+                            ? 'border-blue-600 bg-blue-50 ring-2 ring-blue-200'
                             : 'border-gray-300 hover:border-gray-400'
                         }`}
                         onClick={() => handleInputChange('orderType', 'pickup')}
                       >
                         <div className="flex items-center space-x-3">
-                          <Icons.ShoppingCart className="w-5 h-5 text-vendorr-blue-500" />
+                          <Icons.ShoppingCart className={`w-5 h-5 ${orderInfo.orderType === 'pickup' ? 'text-blue-600' : 'text-gray-500'}`} />
                           <div>
-                            <h4 className="font-medium text-gray-900">Pickup</h4>
+                            <h4 className={`font-medium ${orderInfo.orderType === 'pickup' ? 'text-blue-900' : 'text-gray-900'}`}>Pickup</h4>
                             <p className="text-sm text-gray-600">Collect your order from our store</p>
                           </div>
                         </div>
@@ -254,15 +254,15 @@ const CheckoutPage = () => {
                       <div
                         className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
                           orderInfo.orderType === 'dine-in'
-                            ? 'border-vendorr-blue-500 bg-vendorr-blue-50'
+                            ? 'border-blue-600 bg-blue-50 ring-2 ring-blue-200'
                             : 'border-gray-300 hover:border-gray-400'
                         }`}
                         onClick={() => handleInputChange('orderType', 'dine-in')}
                       >
                         <div className="flex items-center space-x-3">
-                          <Icons.User className="w-5 h-5 text-vendorr-blue-500" />
+                          <Icons.User className={`w-5 h-5 ${orderInfo.orderType === 'dine-in' ? 'text-blue-600' : 'text-gray-500'}`} />
                           <div>
-                            <h4 className="font-medium text-gray-900">Dine In</h4>
+                            <h4 className={`font-medium ${orderInfo.orderType === 'dine-in' ? 'text-blue-900' : 'text-gray-900'}`}>Dine In</h4>
                             <p className="text-sm text-gray-600">Enjoy your meal at our restaurant</p>
                           </div>
                         </div>

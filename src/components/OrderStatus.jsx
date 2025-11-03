@@ -64,26 +64,7 @@ export default function OrderStatus({ order, onTrackOrder, showDetails = false }
     return configs[status] || configs['pending']
   }
 
-  const getPaymentStatusConfig = (status) => {
-    const configs = {
-      'pending': {
-        color: 'bg-yellow-100 text-yellow-800',
-        text: 'Payment Pending'
-      },
-      'confirmed': {
-        color: 'bg-green-100 text-green-800',
-        text: 'Payment Confirmed'
-      },
-      'failed': {
-        color: 'bg-red-100 text-red-800',
-        text: 'Payment Failed'
-      }
-    }
-    return configs[status] || configs['pending']
-  }
-
   const statusConfig = getStatusConfig(order.status)
-  const paymentConfig = getPaymentStatusConfig(order.payment_status)
   const StatusIcon = statusConfig.icon
   const { date, time } = formatDateTime(order.created_at)
 
@@ -107,9 +88,6 @@ export default function OrderStatus({ order, onTrackOrder, showDetails = false }
           <div className="text-lg font-bold text-vendorr-blue">
             {formatPrice(order.total_amount)}
           </div>
-          <Badge className={paymentConfig.color} size="sm">
-            {paymentConfig.text}
-          </Badge>
         </div>
       </div>
 

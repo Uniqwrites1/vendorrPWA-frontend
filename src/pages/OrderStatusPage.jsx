@@ -424,12 +424,6 @@ const OrderStatusPage = () => {
                     <span className="text-gray-600">Payment</span>
                     <span className="text-gray-900 capitalize">{order.payment_method || 'N/A'}</span>
                   </div>
-                  {order.payment_status && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Payment Status</span>
-                      <span className="text-gray-900 capitalize">{order.payment_status}</span>
-                    </div>
-                  )}
                 </div>
 
                 <div className="mt-6 pt-6 border-t">

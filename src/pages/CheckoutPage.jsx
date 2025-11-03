@@ -26,8 +26,7 @@ const CheckoutPage = () => {
   const [errors, setErrors] = useState({});
 
   const subtotal = getCartTotal();
-  const tax = subtotal * 0.08;
-  const total = subtotal + tax;
+  const total = subtotal;
 
   // formatPrice is now imported from '../utils/currency'
 
@@ -436,10 +435,6 @@ const CheckoutPage = () => {
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Subtotal</span>
                     <span>{formatPrice(subtotal)}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Tax</span>
-                    <span>{formatPrice(tax)}</span>
                   </div>
                   <div className="flex justify-between font-semibold text-lg pt-2 border-t">
                     <span>Total</span>

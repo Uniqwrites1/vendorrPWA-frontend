@@ -215,10 +215,6 @@ const CartPage = () => {
                     <span className="font-medium">{formatPrice(getCartTotal())}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Tax</span>
-                    <span className="font-medium">{formatPrice(getCartTotal() * 0.08)}</span>
-                  </div>
-                  <div className="flex justify-between">
                     <span className="text-gray-600">Delivery Fee</span>
                     <span className="font-medium">{formatPrice(2.99)}</span>
                   </div>
@@ -226,7 +222,7 @@ const CartPage = () => {
                     <div className="flex justify-between">
                       <span className="font-semibold text-gray-900">Total</span>
                       <span className="font-semibold text-gray-900">
-                        {formatPrice(getCartTotal() + (getCartTotal() * 0.08) + 2.99)}
+                        {formatPrice(getCartTotal() + 2.99)}
                       </span>
                     </div>
                   </div>

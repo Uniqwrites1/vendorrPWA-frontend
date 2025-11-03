@@ -15,8 +15,7 @@ export default function Cart({
 
   // Calculate totals
   const subtotal = getCartTotal()
-  const tax = subtotal * 0.08 // 8% tax
-  const total = subtotal + tax
+  const total = subtotal
 
   // formatPrice is now imported from '../utils/currency'
 
@@ -173,10 +172,6 @@ export default function Cart({
               <div className="flex justify-between text-sm">
                 <span>Subtotal</span>
                 <span>{formatPrice(subtotal)}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span>Tax (8%)</span>
-                <span>{formatPrice(tax)}</span>
               </div>
               <div className="flex justify-between text-lg font-semibold border-t border-gray-200 pt-2">
                 <span>Total</span>

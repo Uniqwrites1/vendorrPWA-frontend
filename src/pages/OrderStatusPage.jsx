@@ -401,10 +401,6 @@ const OrderStatusPage = () => {
                     <span className="text-gray-600">Subtotal</span>
                     <span className="font-medium">{formatPrice(order.subtotal || 0)}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Tax</span>
-                    <span className="font-medium">{formatPrice(order.tax_amount || 0)}</span>
-                  </div>
                   <div className="border-t pt-3">
                     <div className="flex justify-between">
                       <span className="font-semibold text-gray-900">Total</span>

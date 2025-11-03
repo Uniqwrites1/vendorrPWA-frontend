@@ -111,6 +111,8 @@ export const orders = {
 
   updateOrderStatus: (orderId, status) => api.put(`/api/test/admin/orders/${orderId}/status`, { status }),
 
+  updatePaymentStatus: (orderId, paymentStatus) => api.post(`/api/orders/${orderId}/update-payment-status`, { payment_status: paymentStatus }),
+
   getPendingOrders: () => api.get('/api/test/admin/orders?status=pending'),
 
   getPreparingOrders: () => api.get('/api/test/admin/orders?status=preparing'),

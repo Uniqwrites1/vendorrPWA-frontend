@@ -121,13 +121,6 @@ export default function HomePage() {
     }
   ]
 
-  const stats = [
-    { number: "15+", label: "Menu Items" },
-    { number: "5-20", label: "Min Prep Time" },
-    { number: "500+", label: "Happy Customers" },
-    { number: "4.8★", label: "Average Rating" }
-  ]
-
   // formatPrice is imported from '../utils/currency' at the top
 
   return (
@@ -176,19 +169,6 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mt-12">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center bg-blue-800 rounded-xl py-6 px-4 shadow-lg border-2 border-yellow-400 hover:shadow-xl hover:scale-105 transition-all">
-                  <div className="text-3xl md:text-4xl font-extrabold text-yellow-400 mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm md:text-base font-semibold text-white">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </ContentContainer>
       </Section>
